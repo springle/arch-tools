@@ -1,0 +1,42 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:3.2
+    restart: always
+    environment:
+      - NEO4J_AUTH=none
+      - elastic=http://elastic
+    ports:
+      - 7474:7474
+      - 7473:7473
+      - 7687:7687
+    volumes:
+      - ./neo4j/data:/data
+  elastic:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.3
+    restart: always
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=127.0.0.1
+      - xpack.security.enabled=false
+    ports:
+      - 9222:9200
+    volumes:
+      - ./elastic/data:/usr/share/elasticsearch/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.6.3
+    environment:
+      - ELASTICSEARCH_URL=http://elastic:9200
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=changeme
+    ports:
+      - 5601:5601
+  rabbitmq:
+    image: rabbitmq:3.6.12-management
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    ports:
+      - 5672:5672
+      - 15672:15672
