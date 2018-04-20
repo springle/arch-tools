@@ -20,9 +20,7 @@ services:
       - transport.host=127.0.0.1
       - xpack.security.enabled=false
     ports:
-      - 9222:9200
-    volumes:
-      - ./elastic/data:/usr/share/elasticsearch/data
+      - 9200:9200
   kibana:
     image: docker.elastic.co/kibana/kibana:5.6.3
     environment:
