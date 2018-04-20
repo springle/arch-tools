@@ -16,4 +16,6 @@ the following URLs:
 - RabbitMQ: [[http://localhost:15672]]
 
 Note that on some systems (namely Windows) you will need to replace
-localhost with the value of `docker-machine ip`.
+localhost with the value of `docker-machine ip`. For those services
+with authentication enabled, default usernames and passwords can be
+viewed and edited inside [[file:docker-compose.yml][docker-compose.yml]].
