@@ -30,7 +30,7 @@ a list of the available settings and their defaults:
 | =URL_LIMIT=       | =-1=                 | Maxmimum number of URLs to pull (-1 means no limit)      |
 
 You probably will not need to change most of the defaults, except for
-=SOURCE_PATH=, =DATA_FORMAT=, and possible =SOURCE_BUCKET=. To run
+=SOURCE_PATH=, =DATA_FORMAT=, and possibly =SOURCE_BUCKET=. To run
 with different settings, simply change the environment variables
 corresponding to the setting name you wish to change. For example, to
 load the JSON files in
