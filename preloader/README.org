@@ -4,9 +4,38 @@ The Keystone Pipeline pulls URLs from an exchange in RabbitMQ,
 processes them, and outputs the results to a number of targets 
 (Elasticsearch, Neo4j, etc). This preloader populates that exchange in
 RabbitMQ, so the Keystone Pipeline can start working. To run with the
-default settings, run
+default settings, simply type
 
 #+BEGIN_SRC bash
 source venv/bin/activate
 python3 preloader.py
+#+END_SRC
+
+The default settings point to =gs://archer-source-data/usa/ofac=, but
+the preloader can be customized to load from any location in GCS. The
+default settings also reference a RabbitMQ instance at
+=localhost:5672=, but this location can be customized as well. Here is
+a list of the available settings and their defaults:
+
+| Setting Name      | Default Value        | Explanation                                              |
+|-------------------+----------------------+----------------------------------------------------------|
+| =RMQ_HOST=        | =localhost=          | Host where RabbitMQ is running                           |
+| =RMQ_PORT=        | =5672=               | Port where RabbitMQ is running                           |
+| =RMQ_USER=        | =architect=          | Username for RabbitMQ                                    |
+| =RMQ_PASS=        | =gotpublicdata=      | Password for RabbitMQ                                    |
+| =TARGET_EXCHANGE= | =sources=            | Name of RabbitMQ exchange to populate                    |
+| =SOURCE_BUCKET=   | =archer-source-data= | GCS bucket that holds sources to be loaded               |
+| =SOURCE_PATH=     | =usa/ofac=           | Folder within GCS bucket that holds sources to be loaded |
+| =DATA_FORMAT=     | =csv=                | Data format of the sources to be loaded                  |
+
+You probably will not need to change most of the defaults, except for
+=SOURCE_PATH=, =DATA_FORMAT=, and possible =SOURCE_BUCKET=. To run
+with different settings, simply change the environment variables
+corresponding to the setting name you wish to change. For example, to
+load the JSON files in
+=gs://archer-source-data/uk/companies_house/json/=, you would run the
+following (after activating the virtualenv):
+
+#+BEGIN_SRC bash
+SOURCE_PATH=uk/companies_house/json DATA_FORMAT=json python3 preloader.py
 #+END_SRC
