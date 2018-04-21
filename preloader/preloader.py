@@ -20,7 +20,7 @@ class ArcherPreloader:
 
     def __init__(self, rmq_host, rmq_port, rmq_user,
                  rmq_pass, source_bucket, source_path,
-                 target_exchange, data_format):
+                 target_exchange, data_format, url_limit):
         """
         :param rmq_host: (String) RabbitMQ hostname
         :param rmq_port: (Int) RabbitMQ port
@@ -30,10 +30,13 @@ class ArcherPreloader:
         :param source_path: (String) Path to folder in GCS bucket, contains sources to preload
         :param target_exchange: (String) RMQ exchange to dump URLs into
         :param data_format: (String) Data format of the files in source_bucket/source_path
+        :param url_limit: (Int) Maximum number of URLs to pull
         """
 
-        # Record target_queue
+        # Record params
+        self.url_limit = url_limit
         self.target_exchange = target_exchange
+        self.source_path = source_path
 
         # Pull sources from GCS
         bucket = storage.Client().get_bucket(source_bucket)
@@ -58,11 +61,15 @@ class ArcherPreloader:
         global sources_loaded
         count = 0
 
-        print("------------------")
-        print("STARTING PRELOADER")
-        print("------------------")
+        print("------------------------")
+        print("STARTING PRELOADER: %s/%s" % (self.bucket_name, self.source_path))
+        print("------------------------")
 
         for source in self.sources:
+
+            # Respect url_limit
+            if (sources_loaded >= self.url_limit) and (self.url_limit > 0):
+                break
 
             # Ignore sources we have already loaded
             if count < sources_loaded or not count:
@@ -101,6 +108,7 @@ if __name__ == '__main__':
     source_path = os.getenv("SOURCE_PATH", "usa/ofac")
     target_exchange = os.getenv("TARGET_EXCHANGE", "sources")
     data_format = os.getenv("DATA_FORMAT", "csv")
+    url_limit = int(os.getenv("URL_LIMIT", -1))
 
     # Run preloader
     while True:
@@ -108,7 +116,7 @@ if __name__ == '__main__':
         try:
             preloader = ArcherPreloader(rmq_host, rmq_port, rmq_user,
                                         rmq_pass, source_bucket, source_path,
-                                        target_exchange, data_format)
+                                        target_exchange, data_format, url_limit)
             preloader.preload()
         except requests.exceptions.ConnectionError as e:
             print("disconnected from GCS -- reconnecting")

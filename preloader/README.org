@@ -27,6 +27,7 @@ a list of the available settings and their defaults:
 | =SOURCE_BUCKET=   | =archer-source-data= | GCS bucket that holds sources to be loaded               |
 | =SOURCE_PATH=     | =usa/ofac=           | Folder within GCS bucket that holds sources to be loaded |
 | =DATA_FORMAT=     | =csv=                | Data format of the sources to be loaded                  |
+| =URL_LIMIT=       | =-1=                 | Maxmimum number of URLs to pull (-1 means no limit)      |
 
 You probably will not need to change most of the defaults, except for
 =SOURCE_PATH=, =DATA_FORMAT=, and possible =SOURCE_BUCKET=. To run
