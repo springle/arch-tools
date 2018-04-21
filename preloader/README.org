@@ -1,0 +1,12 @@
+* Keystone Pipeline Preloader
+
+The Keystone Pipeline pulls URLs from an exchange in RabbitMQ,
+processes them, and outputs the results to a number of targets 
+(Elasticsearch, Neo4j, etc). This preloader populates that exchange in
+RabbitMQ, so the Keystone Pipeline can start working. To run with the
+default settings, run
+
+#+BEGIN_SRC bash
+source venv/bin/activate
+python3 preloader.py
+#+END_SRC

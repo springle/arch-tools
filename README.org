@@ -1,21 +1,5 @@
-* Docker Environment
+* Architect Tools
 
-This repository contains useful tools for Architect development. To
-get started, simply clone the repository and run `docker-compose
-up`. Note that you will need to have docker and docker-compose
-installed. On some systems, all docker commands must be prefaced with
-`sudo`.
-
-Once the containers are running, you should have a local copy of
-ElasticSearch, Neo4J, Kibana, and RabbitMQ. These can be accessed at
-the following URLs:
-
-- ElasticSearch: [[http://localhost:9200]]
-- Neo4J: [[http://localhost:7474]]
-- Kibana: [[http://localhost:5601]]
-- RabbitMQ: [[http://localhost:15672]]
-
-Note that on some systems (namely Windows) you will need to replace
-localhost with the value of `docker-machine ip`. For those services
-with authentication enabled, default usernames and passwords can be
-viewed and edited inside [[file:docker-compose.yml][docker-compose.yml]].
+| Docker Environment | Keystone Preloader |
+|--------------------+--------------------|
+| [[file:docker/][docker]]             | [[file:preloader/][preloader]]          |
