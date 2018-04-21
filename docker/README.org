@@ -1,10 +1,10 @@
 * Docker Environment
 
 This directory contains the Docker environment for Architect
-development. To get started, simply `cd` into this directory and
-run `docker-compose up`. Note that you will need to have docker
+development. To get started, simply =cd= into this directory and
+run =docker-compose up=. Note that you will need to have docker
 and docker-compose installed. On some systems, all docker
-commands must be prefaced with `sudo`.
+commands must be prefaced with =sudo=.
 
 Once the containers are running, you should have a local copy of
 ElasticSearch, Neo4J, Kibana, and RabbitMQ. These can be accessed at
@@ -16,6 +16,6 @@ the following URLs:
 - RabbitMQ: [[http://localhost:15672]]
 
 Note that on some systems (namely Windows) you will need to replace
-localhost with the value of `docker-machine ip`. For those services
+localhost with the value of =docker-machine ip=. For those services
 with authentication enabled, default usernames and passwords can be
 viewed and edited inside [[file:docker-compose.yml][docker-compose.yml]].

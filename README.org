@@ -3,3 +3,21 @@
 | Docker Environment | Keystone Preloader |
 |--------------------+--------------------|
 | [[file:docker/][docker]]             | [[file:preloader/][preloader]]          |
+
+
+Since Architect makes heavy use of Google Cloud Storage (GCS) for data
+storage, developing for Architect requires authenticating with
+GCS. The first step in that process involves obtaining a Service
+Account Key with the =Storage Admin= permission. Please contact [[mailto:15springle@gmail.com][Sam]] or
+[[mailto:tylerheintz@berkeley.edu][Tyler]] if you need one generated for you.
+
+Once you have a Service Account Key, rename it to =gcskey.json= and
+place it in the root directory of this repository. You could
+technically put it anywhere, but it will make everything easier if you
+just put it here (it will be ignored by git if you name it as
+suggested). Finally, run the following script from this directory to
+set the =GOOGLE_APPLICATION_CREDENTIALS= environment variable:
+
+#+BEGIN_SRC bash
+./set_google_credentials.sh
+#+END_SRC
