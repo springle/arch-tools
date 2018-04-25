@@ -61,9 +61,9 @@ class ArcherPreloader:
         global sources_loaded
         count = 0
 
-        print("------------------------")
+        print("------------------")
         print("STARTING PRELOADER: %s/%s" % (self.bucket_name, self.source_path))
-        print("------------------------")
+        print("------------------")
 
         for source in self.sources:
 
@@ -87,12 +87,12 @@ class ArcherPreloader:
             sources_loaded += 1
 
             # Periodically display progress
-            if sources_loaded % 1000 == 0:
-                print("Sources loaded: ", sources_loaded)
+            if sources_loaded % 100 == 0:
+                print("--> %s sources loaded" % sources_loaded)
 
-        print("--------------------------------------")
+        print("-------------------")
         print("FINISHING PRELOADER: %s sources loaded" % sources_loaded)
-        print("--------------------------------------")
+        print("-------------------")
 
         self.connection.close()
 

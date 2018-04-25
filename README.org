@@ -1,12 +1,12 @@
-* Architect Tools
+* Keystone Tools
 
 | Docker Environment | Keystone Preloader |
 |--------------------+--------------------|
 | [[file:docker/][docker]]             | [[file:preloader/][preloader]]          |
 
 
-Since Architect makes heavy use of Google Cloud Storage (GCS) for data
-storage, developing for Architect requires authenticating with
+Since Keystone makes heavy use of Google Cloud Storage (GCS) for data
+storage, developing for Keystone requires authenticating with
 GCS. The first step in that process involves obtaining a Service
 Account Key with the =Storage Admin= permission. Please contact [[mailto:15springle@gmail.com][Sam]] or
 [[mailto:tylerheintz@berkeley.edu][Tyler]] if you need one generated for you.
