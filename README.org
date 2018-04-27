@@ -19,5 +19,7 @@ suggested). Finally, run the following script from this directory to
 set the =GOOGLE_APPLICATION_CREDENTIALS= environment variable:
 
 #+BEGIN_SRC bash
-./set_google_credentials.sh
+sudo ./set_google_credentials.sh
 #+END_SRC
+
+This needs root permissions to modify `/etc/environment`.
