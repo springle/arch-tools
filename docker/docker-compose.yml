@@ -5,13 +5,13 @@ services:
     restart: always
     environment:
       - NEO4J_AUTH=none
+      - NEO4J_dbms_memory_heap_initial__size=4G
+      - NEO4J_dbms_memory_heap_max__size=4G
       - elastic=http://elastic
     ports:
       - 7474:7474
       - 7473:7473
       - 7687:7687
-    volumes:
-      - ./neo4j/data:/data
   elastic:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.3
     restart: always
