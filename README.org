@@ -16,10 +16,16 @@ place it in the root directory of this repository. You could
 technically put it anywhere, but it will make everything easier if you
 just put it here (it will be ignored by git if you name it as
 suggested). Finally, run the following script from this directory to
-set the =GOOGLE_APPLICATION_CREDENTIALS= environment variable:
+set the =GOOGLE_APPLICATION_CREDENTIALS= environment variable (on a mac):
 
 #+BEGIN_SRC bash
 sudo ./set_google_credentials.sh
 #+END_SRC
 
-This needs root permissions to modify `/etc/environment`.
+This needs root permissions to modify the environment of all
+applications. If you are developing with IntelliJ, for example, it
+won't read from =~/.profile=.
+
+If you are on Windows/Linux, just set the environment variable
+directly to the location of =gcskey.json=. Do this through the windows
+settings or by modifying `/etc/environment` on Linux.
